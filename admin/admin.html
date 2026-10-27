@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Admin · Messages</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/style.css" />
+    <style>
+      .admin { padding: 60px 0; }
+      .msg {
+        background: var(--noir-2);
+        border: 1px solid var(--bordure);
+        border-radius: 14px;
+        padding: 22px;
+        margin-bottom: 18px;
+      }
+      .msg-haut { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+      .msg-date { color: var(--texte-doux); font-size: 0.85rem; }
+      .msg-texte { white-space: pre-wrap; margin: 14px 0 0; color: var(--texte); }
+      .btn-suppr {
+        background: transparent;
+        border: 1px solid var(--rouge);
+        color: var(--rouge);
+        border-radius: 50px;
+        padding: 4px 14px;
+        font-size: 0.85rem;
+      }
+      .btn-suppr:hover { background: var(--rouge); color: #fff; }
+    </style>
+  </head>
+  <body>
+    <main class="admin container">
+      <p class="sur-titre">Espace admin</p>
+      <h1 class="section-titre">Messages reçus <span class="text-bleu" id="compteur"></span></h1>
+      <div id="liste"></div>
+    </main>
+
+    <script>
+      const liste = document.getElementById('liste');
+      const compteur = document.getElementById('compteur');
+
+      async function chargerMessages() {
+        const reponse = await fetch('/api/messages');
+        const messages = await reponse.json();
+        compteur.textContent = '(' + messages.length + ')';
+        liste.innerHTML = '';
+
+        if (messages.length === 0) {
+          liste.innerHTML = '<p class="text-secondary">Aucun message pour le moment.</p>';
+          return;
+        }
+
+        messages.forEach((m) => {
+          const carte = document.createElement('div');
+          carte.className = 'msg';
+          carte.innerHTML = `
+            <div class="msg-haut">
+              <div>
+                <strong class="nom"></strong><br />
+                <a class="mail text-bleu"></a>
+              </div>
+              <div class="text-end">
+                <div class="msg-date"></div>
+                <button class="btn-suppr mt-2">Supprimer</button>
+              </div>
+            </div>
+            <p class="msg-texte"></p>
+          `;
+          // textContent = le contenu des visiteurs est affiché comme du texte, jamais exécuté
+          carte.querySelector('.nom').textContent = m.prenom + ' ' + m.nom;
+          carte.querySelector('.mail').textContent = m.email;
+          carte.querySelector('.mail').href = 'mailto:' + encodeURIComponent(m.email);
+          carte.querySelector('.msg-date').textContent = m.date;
+          carte.querySelector('.msg-texte').textContent = m.message;
+
+          carte.querySelector('.btn-suppr').addEventListener('click', async () => {
+            if (!confirm('Supprimer ce message définitivement ?')) return;
+            const rep = await fetch('/api/messages/' + m.id, { method: 'DELETE' });
+            const res = await rep.json();
+            if (res.ok) chargerMessages();
+          });
+
+          liste.appendChild(carte);
+        });
+      }
+
+      chargerMessages();
+    </script>
+  </body>
+</html>

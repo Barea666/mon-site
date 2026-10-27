@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const nodemailer = require('nodemailer');
 const Database = require('better-sqlite3');
+const crypto = require('crypto');
 
 const app = express();
 const PORT = 3000;
@@ -88,6 +89,49 @@ app.post('/contact', async (req, res) => {
   }
 
   res.json({ ok: true });
+});
+// ===== PROTECTION DE L'ADMIN =====
+// Compare deux textes sans laisser d'indice sur le temps de comparaison
+function egal(a, b) {
+  const ha = crypto.createHash('sha256').update(String(a)).digest();
+  const hb = crypto.createHash('sha256').update(String(b)).digest();
+  return crypto.timingSafeEqual(ha, hb);
+}
+
+function protegerAdmin(req, res, next) {
+  const motDePasseAttendu = process.env.ADMIN_PASSWORD;
+  const entete = req.headers.authorization || '';
+
+  if (motDePasseAttendu && entete.startsWith('Basic ')) {
+    const texte = Buffer.from(entete.slice(6), 'base64').toString();
+    const i = texte.indexOf(':');
+    const utilisateur = texte.slice(0, i);
+    const motDePasse = texte.slice(i + 1);
+    if (utilisateur === 'admin' && egal(motDePasse, motDePasseAttendu)) {
+      return next(); // accès autorisé
+    }
+  }
+  res.set('WWW-Authenticate', 'Basic realm="Admin"');
+  res.status(401).send('Accès refusé');
+}
+
+// ===== ROUTES ADMIN =====
+app.get('/admin', protegerAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin', 'admin.html'));
+});
+
+app.get('/api/messages', protegerAdmin, (req, res) => {
+  const messages = db.prepare('SELECT * FROM messages ORDER BY id DESC').all();
+  res.json(messages);
+});
+
+app.delete('/api/messages/:id', protegerAdmin, (req, res) => {
+  const id = Number(req.params.id);
+  if (!Number.isInteger(id)) {
+    return res.status(400).json({ ok: false });
+  }
+  const resultat = db.prepare('DELETE FROM messages WHERE id = ?').run(id);
+  res.json({ ok: resultat.changes === 1 });
 });
 
 app.listen(PORT, () => {
