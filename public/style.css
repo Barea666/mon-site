@@ -450,3 +450,53 @@ html {
   font-size: 0.85rem;
   color: var(--texte-doux);
 }
+/* ===== TÉMOIGNAGES ===== */
+.temoignage {
+  background: var(--noir);
+  border: 1px solid var(--bordure);
+  border-radius: 14px;
+  padding: 28px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.temoignage:hover {
+  border-color: var(--bleu);
+  box-shadow: 0 0 25px rgba(0, 168, 255, 0.2);
+}
+.etoiles {
+  color: var(--rouge);
+  letter-spacing: 4px;
+  margin-bottom: 14px;
+}
+.temoignage p {
+  font-style: italic;
+  color: var(--texte-doux);
+  flex-grow: 1; /* aligne les auteurs en bas */
+}
+.auteur {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--bleu);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  color: var(--bleu);
+  box-shadow: 0 0 12px rgba(0, 168, 255, 0.35);
+}
+.auteur strong {
+  display: block;
+}
+.auteur small {
+  color: var(--texte-doux);
+}
