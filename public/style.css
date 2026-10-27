@@ -320,3 +320,64 @@ html {
 .resultat span {
   display: block;
 }
+/* ===== PARCOURS ===== */
+.frise {
+  position: relative;
+  padding-left: 40px;
+}
+/* La ligne verticale */
+.frise::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: linear-gradient(var(--bleu), var(--rouge));
+}
+.etape {
+  position: relative;
+  margin-bottom: 40px;
+}
+.etape:last-child {
+  margin-bottom: 0;
+}
+/* Le point sur la ligne */
+.etape::before {
+  content: "";
+  position: absolute;
+  left: -38px;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--noir);
+  border: 2px solid var(--bleu);
+}
+.etape.actuelle::before {
+  background: var(--rouge);
+  border-color: var(--rouge);
+  box-shadow: 0 0 15px var(--rouge);
+}
+.etape-date {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--bleu);
+}
+.etape h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 6px 0 2px;
+}
+.etape-lieu {
+  color: var(--rouge);
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+.etape p:last-child {
+  color: var(--texte-doux);
+  max-width: 700px;
+}
