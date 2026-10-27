@@ -629,3 +629,9 @@ html {
 .form-retour.erreur {
   color: var(--rouge);
 }
+/* ===== CHAMPS PRÉ-REMPLIS PAR CHROME ===== */
+.form-contact .form-control:-webkit-autofill {
+  -webkit-text-fill-color: var(--texte);
+  -webkit-box-shadow: 0 0 0 1000px var(--noir-2) inset;
+  caret-color: var(--texte);
+}

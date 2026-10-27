@@ -121,6 +121,7 @@ document.querySelectorAll('#menu .nav-link, #menu .btn-neon').forEach((lien) => 
   });
 });
 // ===== ENVOI DU FORMULAIRE =====
+const debutPage = Date.now(); // moment où la page s'est ouverte
 const formContact = document.getElementById('form-contact');
 const formRetour = document.getElementById('form-retour');
 const btnEnvoyer = formContact.querySelector('button[type="submit"]');
@@ -129,6 +130,7 @@ formContact.addEventListener('submit', async (e) => {
   e.preventDefault(); // empêche le rechargement de la page
 
   const donnees = Object.fromEntries(new FormData(formContact));
+    donnees.duree = Date.now() - debutPage;
   btnEnvoyer.disabled = true;
   btnEnvoyer.textContent = traductions[langue]['f-envoi'];
   formRetour.className = 'form-retour';
@@ -147,9 +149,13 @@ formContact.addEventListener('submit', async (e) => {
       formRetour.classList.add('succes');
       formContact.reset();
     } else {
-            formRetour.textContent = resultat.erreurs
-        ? traductions[langue]['f-erreur']
-        : traductions[langue]['f-erreur-reseau'];
+            if (resultat.trop) {
+        formRetour.textContent = traductions[langue]['f-trop'];
+      } else if (resultat.erreurs) {
+        formRetour.textContent = traductions[langue]['f-erreur'];
+      } else {
+        formRetour.textContent = traductions[langue]['f-erreur-reseau'];
+      }
       formRetour.classList.add('erreur');
     }
   } catch (err) {

@@ -4,6 +4,7 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 const Database = require('better-sqlite3');
 const crypto = require('crypto');
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 const PORT = 3000;
@@ -39,18 +40,32 @@ const transporteur = nodemailer.createTransport({
 function nettoyer(texte) {
   return String(texte || '').trim();
 }
+// ===== LIMITES ANTI-SPAM =====
+const limiteContact = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  limit: 5,                 // 5 envois maximum
+  handler: (req, res) => res.status(429).json({ ok: false, trop: true }),
+});
+
+const limiteAdmin = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 10,
+  skipSuccessfulRequests: true, // ne compte que les mots de passe faux
+  message: 'Trop de tentatives. Réessayez dans 15 minutes.',
+});
 
 // ===== RÉCEPTION DU FORMULAIRE =====
-app.post('/contact', async (req, res) => {
+app.post('/contact', limiteContact, async (req, res) => {
   const nom = nettoyer(req.body.nom);
   const prenom = nettoyer(req.body.prenom);
   const email = nettoyer(req.body.email);
   const message = nettoyer(req.body.message);
   const site = nettoyer(req.body.site);
 
-  // Anti-spam : champ piège rempli = robot
-  if (site !== '') {
-    return res.json({ ok: true });
+  // Anti-spam : champ piège rempli OU envoi trop rapide (< 3 s) = robot
+  const duree = Number(req.body.duree) || 0;
+  if (site !== '' || duree < 3000) {
+    return res.json({ ok: true }); // on fait semblant, mais on ne fait rien
   }
 
   // Validation
@@ -116,16 +131,16 @@ function protegerAdmin(req, res, next) {
 }
 
 // ===== ROUTES ADMIN =====
-app.get('/admin', protegerAdmin, (req, res) => {
+app.get('/admin', limiteAdmin, protegerAdmin, (req, res) => {
   res.sendFile(path.join(__dirname, 'admin', 'admin.html'));
 });
 
-app.get('/api/messages', protegerAdmin, (req, res) => {
+app.get('/api/messages', limiteAdmin, protegerAdmin, (req, res) => {
   const messages = db.prepare('SELECT * FROM messages ORDER BY id DESC').all();
   res.json(messages);
 });
 
-app.delete('/api/messages/:id', protegerAdmin, (req, res) => {
+app.delete('/api/messages/:id', limiteAdmin, protegerAdmin, (req, res) => {
   const id = Number(req.params.id);
   if (!Number.isInteger(id)) {
     return res.status(400).json({ ok: false });
