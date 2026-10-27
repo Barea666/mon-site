@@ -154,3 +154,51 @@ section {
   max-height: 480px;
   object-fit: cover;
 }
+/* ===== SECTIONS (commun) ===== */
+.section {
+  padding: 100px 0;
+}
+.section-titre {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  margin-bottom: 30px;
+}
+
+/* ===== À PROPOS ===== */
+.citation {
+  border-left: 3px solid var(--rouge);
+  padding-left: 20px;
+  font-style: italic;
+  color: var(--texte-doux);
+  max-width: 600px;
+}
+.compteur-carte {
+  background: var(--noir-2);
+  border: 1px solid var(--bordure);
+  border-radius: 14px;
+  padding: 25px 15px;
+  text-align: center;
+  height: 100%;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.compteur-carte:hover {
+  border-color: var(--bleu);
+  box-shadow: 0 0 20px rgba(0, 168, 255, 0.25);
+}
+.compteur {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--bleu), var(--rouge));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.compteur-carte p {
+  margin: 5px 0 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--texte-doux);
+}
