@@ -1,13 +1,30 @@
-require('dotenv').config(); // lit le fichier .env
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const nodemailer = require('nodemailer');
+const Database = require('better-sqlite3');
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.json({ limit: '10kb' }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// ===== BASE DE DONNÉES =====
+const db = new Database(path.join(__dirname, 'messages.db'));
+db.exec(`
+  CREATE TABLE IF NOT EXISTS messages (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nom TEXT NOT NULL,
+    prenom TEXT NOT NULL,
+    email TEXT NOT NULL,
+    message TEXT NOT NULL,
+    date TEXT DEFAULT (datetime('now', 'localtime'))
+  )
+`);
+const insererMessage = db.prepare(
+  'INSERT INTO messages (nom, prenom, email, message) VALUES (?, ?, ?, ?)'
+);
 
 // ===== CONNEXION À GMAIL =====
 const transporteur = nodemailer.createTransport({
@@ -46,21 +63,31 @@ app.post('/contact', async (req, res) => {
     return res.status(400).json({ ok: false, erreurs });
   }
 
-  // Envoi de l'e-mail
+  // 1) Sauvegarde dans la base (en premier : le message n'est jamais perdu)
+  try {
+    insererMessage.run(nom, prenom, email, message);
+    console.log('💾 Message enregistré dans la base');
+  } catch (err) {
+    console.error('❌ Erreur base de données :', err.message);
+    return res.status(500).json({ ok: false });
+  }
+
+  // 2) Envoi de l'e-mail
   try {
     await transporteur.sendMail({
       from: `"Site portfolio" <${process.env.GMAIL_USER}>`,
       to: process.env.GMAIL_USER,
-      replyTo: email, // "Répondre" dans Gmail écrit directement au visiteur
+      replyTo: email,
       subject: `📩 Nouveau message de ${prenom} ${nom}`,
       text: `Nom : ${nom}\nPrénom : ${prenom}\nE-mail : ${email}\n\nMessage :\n${message}`,
     });
     console.log('✅ E-mail envoyé pour', prenom, nom);
-    res.json({ ok: true });
   } catch (err) {
-    console.error('❌ Erreur envoi e-mail :', err.message);
-    res.status(500).json({ ok: false });
+    // Le message est déjà sauvegardé : on le signale juste dans le terminal
+    console.error('⚠️ E-mail non envoyé (message gardé dans la base) :', err.message);
   }
+
+  res.json({ ok: true });
 });
 
 app.listen(PORT, () => {
