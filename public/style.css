@@ -618,3 +618,14 @@ html {
   .anime { opacity: 1; }
   .anime.visible { animation: none; }
 }
+/* ===== RETOUR FORMULAIRE ===== */
+.form-retour {
+  margin-top: 15px;
+  font-size: 0.95rem;
+}
+.form-retour.succes {
+  color: #2ee59d;
+}
+.form-retour.erreur {
+  color: var(--rouge);
+}

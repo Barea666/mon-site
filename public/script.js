@@ -120,3 +120,41 @@ document.querySelectorAll('#menu .nav-link, #menu .btn-neon').forEach((lien) => 
     }
   });
 });
+// ===== ENVOI DU FORMULAIRE =====
+const formContact = document.getElementById('form-contact');
+const formRetour = document.getElementById('form-retour');
+const btnEnvoyer = formContact.querySelector('button[type="submit"]');
+
+formContact.addEventListener('submit', async (e) => {
+  e.preventDefault(); // empêche le rechargement de la page
+
+  const donnees = Object.fromEntries(new FormData(formContact));
+  btnEnvoyer.disabled = true;
+  btnEnvoyer.textContent = traductions[langue]['f-envoi'];
+  formRetour.className = 'form-retour';
+  formRetour.textContent = '';
+
+  try {
+    const reponse = await fetch('/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(donnees),
+    });
+    const resultat = await reponse.json();
+
+    if (resultat.ok) {
+      formRetour.textContent = traductions[langue]['f-succes'];
+      formRetour.classList.add('succes');
+      formContact.reset();
+    } else {
+      formRetour.textContent = traductions[langue]['f-erreur'];
+      formRetour.classList.add('erreur');
+    }
+  } catch (err) {
+    formRetour.textContent = traductions[langue]['f-erreur-reseau'];
+    formRetour.classList.add('erreur');
+  }
+
+  btnEnvoyer.disabled = false;
+  btnEnvoyer.innerHTML = traductions[langue]['f-envoyer'];
+});
