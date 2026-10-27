@@ -93,3 +93,20 @@ btnLangue.addEventListener('click', () => {
 });
 
 appliquerLangue(langue);
+// ===== ANIMATIONS AU SCROLL =====
+const elementsAnimes = document.querySelectorAll(
+  '.sur-titre, .section-titre, .section-intro, .citation, .compteur-carte, .carte-domaine, .projet, .etape, .competence, .langues, .qualite, .temoignage, .form-contact, .coordonnees, .carte-qr'
+);
+
+elementsAnimes.forEach((el) => el.classList.add('anime'));
+
+const observateurAnim = new IntersectionObserver((entrees) => {
+  entrees.forEach((entree) => {
+    if (entree.isIntersecting) {
+      entree.target.classList.add('visible');
+      observateurAnim.unobserve(entree.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+elementsAnimes.forEach((el) => observateurAnim.observe(el));
