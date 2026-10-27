@@ -110,3 +110,13 @@ const observateurAnim = new IntersectionObserver((entrees) => {
 }, { threshold: 0.15 });
 
 elementsAnimes.forEach((el) => observateurAnim.observe(el));
+
+// ===== MOBILE : fermer le menu après un clic =====
+const menuMobile = document.getElementById('menu');
+document.querySelectorAll('#menu .nav-link, #menu .btn-neon').forEach((lien) => {
+  lien.addEventListener('click', () => {
+    if (menuMobile.classList.contains('show')) {
+      bootstrap.Collapse.getOrCreateInstance(menuMobile).hide();
+    }
+  });
+});
