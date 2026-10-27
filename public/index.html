@@ -43,13 +43,14 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="menu">
-          <ul class="navbar-nav ms-auto align-items-lg-center">
-            <li class="nav-item"><a class="nav-link" href="#apropos">À propos</a></li>
-            <li class="nav-item"><a class="nav-link" href="#domaines">Domaines</a></li>
-            <li class="nav-item"><a class="nav-link" href="#realisations">Réalisations</a></li>
-            <li class="nav-item"><a class="nav-link" href="#parcours">Parcours</a></li>
-            <li class="nav-item"><a class="nav-link" href="#competences">Compétences</a></li>
-            <li class="nav-item ms-lg-3"><a class="btn btn-neon" href="#contact">Me contacter</a></li>
+             <ul class="navbar-nav ms-auto align-items-lg-center">
+            <li class="nav-item"><a class="nav-link" href="#apropos" data-i18n="nav-apropos">À propos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#domaines" data-i18n="nav-domaines">Domaines</a></li>
+            <li class="nav-item"><a class="nav-link" href="#realisations" data-i18n="nav-realisations">Réalisations</a></li>
+            <li class="nav-item"><a class="nav-link" href="#parcours" data-i18n="nav-parcours">Parcours</a></li>
+            <li class="nav-item"><a class="nav-link" href="#competences" data-i18n="nav-competences">Compétences</a></li>
+            <li class="nav-item ms-lg-3 my-2 my-lg-0"><button id="btn-langue" class="btn-langue" type="button" aria-label="Changer de langue"></button></li>
+            <li class="nav-item ms-lg-3"><a class="btn btn-neon" href="#contact" data-i18n="nav-contact">Me contacter</a></li>
           </ul>
         </div>
       </div>
@@ -62,22 +63,22 @@
           <div class="row align-items-center g-5">
             <!-- Texte -->
             <div class="col-lg-7">
-              <p class="sur-titre">Assistant virtuel senior</p>
+              <p class="sur-titre" data-i18n="accueil-surtitre">Assistant virtuel senior</p>
               <h1 class="hero-titre">Kevin <span class="text-bleu">Randriamboavonjy</span></h1>
-              <p class="hero-sous-titre">Architecte de back-office · Support administratif &amp; opérationnel</p>
-              <p class="hero-texte">
+              <p class="hero-sous-titre" data-i18n="accueil-soustitre">Architecte de back-office · Support administratif &amp; opérationnel</p>
+              <p class="hero-texte" data-i18n="accueil-texte">
                 Je transforme le back-office des dirigeants en une mécanique
                 <strong>fluide, automatisée et pilotée par l'IA</strong> — pour libérer du temps,
                 sécuriser les dossiers et faire grandir l'entreprise.
               </p>
               <div class="d-flex flex-wrap gap-3 mb-5">
-                <a href="#contact" class="btn btn-neon">Travaillons ensemble</a>
-                <a href="#realisations" class="btn btn-contour">Voir mes réalisations</a>
+                <a href="#contact" class="btn btn-neon" data-i18n="accueil-btn1">Travaillons ensemble</a>
+                <a href="#realisations" class="btn btn-contour" data-i18n="accueil-btn2">Voir mes réalisations</a>
               </div>
               <div class="row hero-infos">
-                <div class="col-12 col-sm-4"><span>Expérience</span><p>8 ans · France &amp; International</p></div>
-                <div class="col-12 col-sm-4"><span>Basé à</span><p>Antananarivo · Télétravail</p></div>
-                <div class="col-12 col-sm-4"><span>Outils</span><p>Notion · IA · CRM</p></div>
+                <div class="col-12 col-sm-4"><span data-i18n="info-exp-titre">Expérience</span><p data-i18n="info-exp">8 ans · France &amp; International</p></div>
+                <div class="col-12 col-sm-4"><span data-i18n="info-base-titre">Basé à</span><p data-i18n="info-base">Antananarivo · Télétravail</p></div>
+                <div class="col-12 col-sm-4"><span data-i18n="info-outils-titre">Outils</span><p data-i18n="info-outils">Notion · IA · CRM</p></div>
               </div>
             </div>
             <!-- Photo -->
@@ -586,6 +587,7 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+            <script src="traductions.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

@@ -578,3 +578,26 @@ html {
 .pied p {
   margin: 0;
 }
+/* ===== BOUTON LANGUE ===== */
+.btn-langue {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid var(--bordure);
+  border-radius: 50px;
+  padding: 6px 14px;
+  color: var(--texte);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.btn-langue:hover {
+  border-color: var(--bleu);
+  box-shadow: 0 0 12px rgba(0, 168, 255, 0.35);
+}
+.btn-langue svg {
+  width: 22px;
+  height: 14px;
+  border-radius: 2px;
+}
