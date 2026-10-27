@@ -224,6 +224,7 @@ section {
   color: var(--bleu);
   font-size: 0.85rem;
   letter-spacing: 2px;
+    text-transform: uppercase;
 }
 .carte-domaine h3 {
   font-family: 'Space Grotesk', sans-serif;
