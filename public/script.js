@@ -147,7 +147,9 @@ formContact.addEventListener('submit', async (e) => {
       formRetour.classList.add('succes');
       formContact.reset();
     } else {
-      formRetour.textContent = traductions[langue]['f-erreur'];
+            formRetour.textContent = resultat.erreurs
+        ? traductions[langue]['f-erreur']
+        : traductions[langue]['f-erreur-reseau'];
       formRetour.classList.add('erreur');
     }
   } catch (err) {
