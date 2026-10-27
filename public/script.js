@@ -41,3 +41,24 @@ const observateurBarres = new IntersectionObserver((entrees) => {
 }, { threshold: 0.5 });
 
 barres.forEach((b) => observateurBarres.observe(b));
+// ===== QR CODE (carte de visite) =====
+const vcard = [
+  'BEGIN:VCARD',
+  'VERSION:3.0',
+  'N:Randriamboavonjy;Kevin',
+  'FN:Kevin Randriamboavonjy',
+  'TITLE:Assistant virtuel senior',
+  'Whatsapp:+261386726340',
+  'EMAIL:randriamboavonjyanjatianakevin@gmail.com',
+  'END:VCARD'
+].join('\n');
+
+new QRCode(document.getElementById('qr'), {
+  text: vcard,
+  width: 160,
+  height: 160,
+  colorDark: '#07070b',
+  colorLight: '#ffffff'
+});
+// ===== ANNÉE AUTOMATIQUE (pied de page) =====
+document.getElementById('annee').textContent = new Date().getFullYear();
