@@ -27,3 +27,17 @@ const observateur = new IntersectionObserver((entrees) => {
 }, { threshold: 0.5 });
 
 compteurs.forEach((c) => observateur.observe(c));
+// ===== BARRES DE COMPÉTENCES =====
+const barres = document.querySelectorAll('.barre');
+
+const observateurBarres = new IntersectionObserver((entrees) => {
+  entrees.forEach((entree) => {
+    if (entree.isIntersecting) {
+      const niveau = entree.target.dataset.niveau;
+      entree.target.querySelector('span').style.width = niveau + '%';
+      observateurBarres.unobserve(entree.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+barres.forEach((b) => observateurBarres.observe(b));

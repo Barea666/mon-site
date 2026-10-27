@@ -381,3 +381,72 @@ html {
   color: var(--texte-doux);
   max-width: 700px;
 }
+/* ===== COMPÉTENCES ===== */
+.bloc-titre {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rouge);
+  margin-bottom: 20px;
+}
+.competence {
+  margin-bottom: 20px;
+}
+.competence-haut {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+.competence-haut span:last-child {
+  color: var(--bleu);
+  font-weight: 600;
+}
+.barre {
+  height: 6px;
+  background: var(--noir-2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.barre span {
+  display: block;
+  height: 100%;
+  width: 0; /* part de 0, le JS la remplit */
+  background: linear-gradient(90deg, var(--bleu), var(--rouge));
+  border-radius: 10px;
+  box-shadow: 0 0 10px var(--bleu);
+  transition: width 1.5s ease-out;
+}
+.langues {
+  list-style: none;
+  padding: 0;
+}
+.langues li {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--bordure);
+}
+.langues li span:last-child {
+  color: var(--texte-doux);
+}
+.qualite {
+  background: var(--noir-2);
+  border: 1px solid var(--bordure);
+  border-radius: 12px;
+  padding: 18px;
+}
+.qualite strong {
+  display: inline-block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.6rem;
+  background: linear-gradient(90deg, var(--bleu), var(--rouge));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.qualite span {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--texte-doux);
+}
