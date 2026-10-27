@@ -415,113 +415,100 @@
         </div>
       </section>
             <!-- ===== TÉMOIGNAGES ===== -->
-      <section id="temoignages" class="section section-alt">
+            <section id="temoignages" class="section section-alt">
         <div class="container">
-          <p class="sur-titre">Ils m'ont fait confiance</p>
-          <h2 class="section-titre">La confiance, <span class="text-rouge">ma meilleure référence</span></h2>
+          <p class="sur-titre" data-i18n="temo-surtitre"></p>
+          <h2 class="section-titre" data-i18n="temo-titre"></h2>
 
           <div class="row g-4 mt-2">
             <div class="col-md-6">
               <div class="temoignage">
                 <div class="etoiles">★★★★★</div>
-                <p>« Kevin a transformé notre back-office. De la rigueur, une vraie autonomie, et cette capacité rare à faire dialoguer nos outils avec l'IA. Un pilier discret, mais décisif au quotidien. »</p>
-                <div class="auteur">
-                  <span class="avatar">T</span>
-                  <div><strong>Thibault</strong><small>Gérant · Peel's, agence &amp; organisme de formation</small></div>
-                </div>
+                <p data-i18n="t1-texte"></p>
+                <div class="auteur"><span class="avatar">T</span>
+                  <div><strong>Thibault</strong><small data-i18n="t1-role"></small></div></div>
               </div>
             </div>
-
             <div class="col-md-6">
               <div class="temoignage">
                 <div class="etoiles">★★★★★</div>
-                <p>« Fiable au point de ne plus avoir à vérifier. Kevin anticipe, organise et sécurise chaque dossier. Le partenaire idéal quand on travaille à distance et qu'on a besoin de dormir tranquille. »</p>
-                <div class="auteur">
-                  <span class="avatar">S</span>
-                  <div><strong>Sarah M.</strong><small>Fondatrice · Cabinet de conseil (mission Upwork)</small></div>
-                </div>
+                <p data-i18n="t2-texte"></p>
+                <div class="auteur"><span class="avatar">S</span>
+                  <div><strong>Sarah M.</strong><small data-i18n="t2-role"></small></div></div>
               </div>
             </div>
-
             <div class="col-md-6">
               <div class="temoignage">
                 <div class="etoiles">★★★★★</div>
-                <p>« Nos campagnes de prospection ont enfin décollé grâce à une méthode carrée et un suivi impeccable. Efficace, réactif et profondément humain dans la relation. »</p>
-                <div class="auteur">
-                  <span class="avatar">M</span>
-                  <div><strong>Marc D.</strong><small>Responsable développement · Secteur CHR</small></div>
-                </div>
+                <p data-i18n="t3-texte"></p>
+                <div class="auteur"><span class="avatar">M</span>
+                  <div><strong>Marc D.</strong><small data-i18n="t3-role"></small></div></div>
               </div>
             </div>
-
             <div class="col-md-6">
               <div class="temoignage">
                 <div class="etoiles">★★★★★</div>
-                <p>« Un dossier de subvention monté de A à Z, obtenu sans accroc. Kevin maîtrise les rouages administratifs comme peu de gens et rend simple ce qui paraissait insurmontable. »</p>
-                <div class="auteur">
-                  <span class="avatar">A</span>
-                  <div><strong>Amélie R.</strong><small>Dirigeante · PME événementiel</small></div>
-                </div>
+                <p data-i18n="t4-texte"></p>
+                <div class="auteur"><span class="avatar">A</span>
+                  <div><strong>Amélie R.</strong><small data-i18n="t4-role"></small></div></div>
               </div>
             </div>
           </div>
         </div>
       </section>
             <!-- ===== CONTACT ===== -->
-      <section id="contact" class="section">
+            <section id="contact" class="section">
         <div class="container">
-          <p class="sur-titre">Restons en contact</p>
-          <h2 class="section-titre">Travaillons <span class="text-bleu">ensemble.</span></h2>
-          <p class="section-intro">Vous cherchez un partenaire fiable pour structurer votre back-office, sécuriser vos financements ou automatiser votre quotidien ? Parlons-en : la première conversation est toujours offerte.</p>
+          <p class="sur-titre" data-i18n="contact-surtitre"></p>
+          <h2 class="section-titre" data-i18n="contact-titre"></h2>
+          <p class="section-intro" data-i18n="contact-intro"></p>
 
           <div class="row g-5">
-            <!-- Formulaire -->
             <div class="col-lg-7">
               <form id="form-contact" class="form-contact" method="POST" action="/contact">
                 <div class="row g-3">
                   <div class="col-sm-6">
-                    <label for="nom" class="form-label">Nom</label>
+                    <label for="nom" class="form-label" data-i18n="f-nom"></label>
                     <input type="text" id="nom" name="nom" class="form-control" required maxlength="60" />
                   </div>
                   <div class="col-sm-6">
-                    <label for="prenom" class="form-label">Prénom</label>
+                    <label for="prenom" class="form-label" data-i18n="f-prenom"></label>
                     <input type="text" id="prenom" name="prenom" class="form-control" required maxlength="60" />
                   </div>
                   <div class="col-12">
-                    <label for="email" class="form-label">E-mail</label>
+                    <label for="email" class="form-label" data-i18n="f-email"></label>
                     <input type="email" id="email" name="email" class="form-control" required maxlength="120" />
                   </div>
                   <div class="col-12">
-                    <label for="message" class="form-label">Message</label>
+                    <label for="message" class="form-label" data-i18n="f-message"></label>
                     <textarea id="message" name="message" class="form-control" rows="5" required minlength="10" maxlength="2000"></textarea>
                   </div>
 
-                  <!-- Anti-spam : champ caché, les robots le remplissent, les humains non -->
+                  <!-- Anti-spam : champ caché -->
                   <div class="piege" aria-hidden="true">
                     <label for="site">Ne pas remplir</label>
                     <input type="text" id="site" name="site" tabindex="-1" autocomplete="off" />
                   </div>
 
                   <div class="col-12">
-                    <button type="submit" class="btn btn-neon">Envoyer le message</button>
+                    <button type="submit" class="btn btn-neon" data-i18n="f-envoyer"></button>
                   </div>
                 </div>
               </form>
             </div>
 
-            <!-- Coordonnées + QR -->
             <div class="col-lg-5">
               <ul class="coordonnees">
-                <li><span>E-mail</span><a href="mailto:randriamboavonjyanjatianakevin@gmail.com">randriamboavonjyanjatianakevin@gmail.com</a></li>
-                <li><span>Téléphone</span><a href="tel:+261386726340">+261 38 67 26 340</a></li>
-                <li><span>WhatsApp</span><a href="https://wa.me/261386726340" target="_blank" rel="noopener">+261 38 67 26 340</a></li>
-                <li><span>Localisation</span><p>Antananarivo, Madagascar · Télétravail international</p></li>
+                <li><span data-i18n="co-email"></span><a href="mailto:randriamboavonjyanjatianakevin@gmail.com">randriamboavonjyanjatianakevin@gmail.com</a></li>
+                <li><span data-i18n="co-tel"></span><a href="tel:+261386726340">+261 38 67 26 340</a></li>
+                <li><span data-i18n="co-whatsapp"></span><a href="https://wa.me/261386726340" target="_blank" rel="noopener">+261 38 67 26 340</a></li>
+                <li><span data-i18n="co-loc-titre"></span><p data-i18n="co-loc"></p></li>
               </ul>
 
               <div class="carte-qr">
                 <div id="qr"></div>
-                <strong>Ma carte de visite</strong>
-                <small>Scannez pour enregistrer mes coordonnées en un geste.</small>
+                <strong data-i18n="qr-titre"></strong>
+                <small data-i18n="qr-texte"></small>
               </div>
             </div>
           </div>
@@ -531,11 +518,11 @@
       <!-- ===== PIED DE PAGE ===== -->
       <footer class="pied">
         <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
-          <p>Kevin <span class="text-bleu">Randriamboavonjy</span> · Assistant virtuel senior</p>
-          <p>© <span id="annee"></span> Kevin Randriamboavonjy. Tous droits réservés.</p>
+          <p>Kevin <span class="text-bleu">Randriamboavonjy</span> · <span data-i18n="pied-role"></span></p>
+          <p>© <span id="annee"></span> Kevin Randriamboavonjy. <span data-i18n="pied-droits"></span></p>
         </div>
       </footer>
-
+      
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>

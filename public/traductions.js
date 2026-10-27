@@ -146,6 +146,32 @@ const traductions = {
     'q1': `Autonomie`, 'q2': `Rigueur`, 'q3': `Organisation`, 'q4': `Adaptabilité`,
     'bloc-domaines': `Domaines couverts`,
     'comp-tags': `<span>Suivi administratif</span><span>Comptabilité opérationnelle</span><span>Veille stratégique</span><span>Recherche de financements</span><span>Développement commercial</span><span>Gestion de projet</span><span>Chorus Pro</span><span>Secteur CHR &amp; formation</span>`,
+        // Témoignages
+    'temo-surtitre': `Ils m'ont fait confiance`,
+    'temo-titre': `La confiance, <span class="text-rouge">ma meilleure référence</span>`,
+    't1-texte': `« Kevin a transformé notre back-office. De la rigueur, une vraie autonomie, et cette capacité rare à faire dialoguer nos outils avec l'IA. Un pilier discret, mais décisif au quotidien. »`,
+    't1-role': `Gérant · Peel's, agence &amp; organisme de formation`,
+    't2-texte': `« Fiable au point de ne plus avoir à vérifier. Kevin anticipe, organise et sécurise chaque dossier. Le partenaire idéal quand on travaille à distance et qu'on a besoin de dormir tranquille. »`,
+    't2-role': `Fondatrice · Cabinet de conseil (mission Upwork)`,
+    't3-texte': `« Nos campagnes de prospection ont enfin décollé grâce à une méthode carrée et un suivi impeccable. Efficace, réactif et profondément humain dans la relation. »`,
+    't3-role': `Responsable développement · Secteur CHR`,
+    't4-texte': `« Un dossier de subvention monté de A à Z, obtenu sans accroc. Kevin maîtrise les rouages administratifs comme peu de gens et rend simple ce qui paraissait insurmontable. »`,
+    't4-role': `Dirigeante · PME événementiel`,
+
+    // Contact
+    'contact-surtitre': `Restons en contact`,
+    'contact-titre': `Travaillons <span class="text-bleu">ensemble.</span>`,
+    'contact-intro': `Vous cherchez un partenaire fiable pour structurer votre back-office, sécuriser vos financements ou automatiser votre quotidien ? Parlons-en : la première conversation est toujours offerte.`,
+    'f-nom': `Nom`, 'f-prenom': `Prénom`, 'f-email': `E-mail`, 'f-message': `Message`,
+    'f-envoyer': `Envoyer le message`,
+    'co-email': `E-mail`, 'co-tel': `Téléphone`, 'co-whatsapp': `WhatsApp`, 'co-loc-titre': `Localisation`,
+    'co-loc': `Antananarivo, Madagascar · Télétravail international`,
+    'qr-titre': `Ma carte de visite`,
+    'qr-texte': `Scannez pour enregistrer mes coordonnées en un geste.`,
+
+    // Pied de page
+    'pied-role': `Assistant virtuel senior`,
+    'pied-droits': `Tous droits réservés.`,
   },
 
   en: {
@@ -294,5 +320,31 @@ const traductions = {
     'q1': `Autonomy`, 'q2': `Rigor`, 'q3': `Organization`, 'q4': `Adaptability`,
     'bloc-domaines': `Areas covered`,
     'comp-tags': `<span>Administrative follow-up</span><span>Operational accounting</span><span>Strategic monitoring</span><span>Funding research</span><span>Business development</span><span>Project management</span><span>Chorus Pro</span><span>Hospitality &amp; training sector</span>`,
+        // Testimonials
+    'temo-surtitre': `They trusted me`,
+    'temo-titre': `Trust, <span class="text-rouge">my best reference</span>`,
+    't1-texte': `"Kevin transformed our back-office. Rigor, real autonomy, and that rare ability to make our tools work hand in hand with AI. A discreet but decisive pillar, every day."`,
+    't1-role': `Manager · Peel's, event agency &amp; training provider`,
+    't2-texte': `"Reliable to the point that I no longer need to double-check. Kevin anticipates, organizes and secures every file. The ideal partner when you work remotely and want to sleep soundly."`,
+    't2-role': `Founder · Consulting firm (Upwork mission)`,
+    't3-texte': `"Our prospecting campaigns finally took off thanks to a structured method and flawless follow-up. Efficient, responsive and deeply human in every interaction."`,
+    't3-role': `Business development manager · Hospitality sector`,
+    't4-texte': `"A grant application handled from A to Z, approved without a hitch. Kevin masters the administrative machinery like few others and makes the seemingly impossible simple."`,
+    't4-role': `Director · Event SME`,
+
+    // Contact
+    'contact-surtitre': `Let's stay in touch`,
+    'contact-titre': `Let's work <span class="text-bleu">together.</span>`,
+    'contact-intro': `Looking for a reliable partner to structure your back-office, secure your funding or automate your daily work? Let's talk: the first conversation is always free.`,
+    'f-nom': `Last name`, 'f-prenom': `First name`, 'f-email': `Email`, 'f-message': `Message`,
+    'f-envoyer': `Send message`,
+    'co-email': `Email`, 'co-tel': `Phone`, 'co-whatsapp': `WhatsApp`, 'co-loc-titre': `Location`,
+    'co-loc': `Antananarivo, Madagascar · Working remotely worldwide`,
+    'qr-titre': `My business card`,
+    'qr-texte': `Scan to save my contact details in one tap.`,
+
+    // Footer
+    'pied-role': `Senior virtual assistant`,
+    'pied-droits': `All rights reserved.`,
   },
 };
